@@ -19,7 +19,7 @@ import io.realm.internal.Keep;
 import io.realm.internal.SharedRealm;
 
 /**
- * Class for reporting problems when the accessing Realm related files.
+ * Class for reporting problems when accessing the Realm related files.
  */
 @Keep
 public class RealmFileException extends RuntimeException {
@@ -28,21 +28,20 @@ public class RealmFileException extends RuntimeException {
      */
     public enum Kind {
         /**
-         * Thrown for any I/O related exception scenarios when a realm is opened.
+         * Thrown for any I/O related exception scenarios when a Realm is opened.
          */
         ACCESS_ERROR,
         /**
          * Thrown if the user does not have permission to open or create the specified file in the specified access
-         * mode when the realm is opened.
+         * mode when the Realm is opened.
          */
         PERMISSION_DENIED,
         /**
-         * Not used now.
-         * Thrown if create_Always was specified and the file did already exist when the realm is opened.
+         * Thrown if the destination file exists but it is not supposed to.
          */
         EXISTS,
         /**
-         * Thrown if relevant file cannot be found.
+         * Thrown if the relevant file cannot be found.
          */
         NOT_FOUND,
         /**
@@ -51,7 +50,6 @@ public class RealmFileException extends RuntimeException {
          */
         INCOMPATIBLE_LOCK_FILE,
         /**
-         * Not used now.
          * Thrown if the file needs to be upgraded to a new format, but upgrades have been explicitly disabled.
          */
         FORMAT_UPGRADE_REQUIRED;
@@ -77,7 +75,8 @@ public class RealmFileException extends RuntimeException {
         }
     }
 
-    public final Kind kind;
+    private final Kind kind;
+
     // Called by JNI
     @SuppressWarnings("unused")
     public RealmFileException(byte value, String message) {
@@ -98,5 +97,19 @@ public class RealmFileException extends RuntimeException {
     public RealmFileException(Kind kind, String message, Throwable cause) {
         super(message, cause);
         this.kind = kind;
+    }
+
+    /**
+     * Gets the {@link #kind} of this exception.
+     *
+     * @return the {@link #kind} of this exception.
+     */
+    public Kind getKind() {
+        return kind;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s Kind: %s.", super.toString(), kind);
     }
 }

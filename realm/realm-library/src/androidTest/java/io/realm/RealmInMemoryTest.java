@@ -168,7 +168,7 @@ public class RealmInMemoryTest extends AndroidTestCase {
             Realm.getInstance(wrongKeyConf);
             fail("Realm.getInstance should fail with RealmFileException");
         } catch (RealmFileException expected) {
-            assertEquals(expected.kind, RealmFileException.Kind.ACCESS_ERROR);
+            assertEquals(expected.getKind(), RealmFileException.Kind.ACCESS_ERROR);
         }
     }
 

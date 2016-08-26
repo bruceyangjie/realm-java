@@ -6,7 +6,7 @@
 * armeabi is not supported anymore.
 * Added new `RealmFileException`.
   - `IncompatibleLockFileException` has been removed and replaced by `RealmFileException` with kind `INCOMPATIBLE_LOCK_FILE`.
-  - `RealmIOExcpetion` has been removed and replaced by `RealmFileException` with specific kind.
+  - `RealmIOExcpetion` has been removed and replaced by `RealmFileException`.
 
 ### Enhancements
 

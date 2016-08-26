@@ -40,7 +40,6 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -211,7 +210,7 @@ public class RealmTests {
         try {
             Realm.getInstance(new RealmConfiguration.Builder(folder).name(REALM_FILE).build());
         } catch (RealmFileException expected) {
-            assertEquals(expected.kind, RealmFileException.Kind.PERMISSION_DENIED);
+            assertEquals(expected.getKind(), RealmFileException.Kind.PERMISSION_DENIED);
         }
     }
 
@@ -227,7 +226,7 @@ public class RealmTests {
         try {
             Realm.getInstance(new RealmConfiguration.Builder(context, folder).name(REALM_FILE).build());
         } catch (RealmFileException expected) {
-            assertEquals(expected.kind, RealmFileException.Kind.PERMISSION_DENIED);
+            assertEquals(expected.getKind(), RealmFileException.Kind.PERMISSION_DENIED);
         }
     }
 

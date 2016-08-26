@@ -840,7 +840,7 @@ public class RealmConfigurationTests {
             Realm.getInstance(configuration);
             fail();
         } catch (RealmFileException expected) {
-            assertEquals(expected.kind, RealmFileException.Kind.ACCESS_ERROR);
+            assertEquals(expected.getKind(), RealmFileException.Kind.ACCESS_ERROR);
         }
     }
 
